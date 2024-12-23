@@ -54,25 +54,8 @@ async function fetchPosts() {
     }
 }
 
-// Получение курсов валют
-async function fetchRates() {
-    logMessage("Загрузка курсов валют...");
-    try {
-        const response = await fetch('https://belarusbank.by/api/kursExchange?city=minsk');
-        const rates = await response.json();
-
-        // Берем первые элементы из массива курсов
-        const firstRate = rates[0];
-        logMessage(`Курс USD: Покупка ${firstRate.USD_in}, Продажа ${firstRate.USD_out}`);
-        logMessage(`Курс EUR: Покупка ${firstRate.EUR_in}, Продажа ${firstRate.EUR_out}`);
-    } catch (error) {
-        logMessage("Ошибка при загрузке курсов: " + error.message);
-    }
-}
-
 // Навешиваем обработчики на кнопки
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {5
     document.getElementById('runTasks').addEventListener('click', executeTasks);
     document.getElementById('fetchPosts').addEventListener('click', fetchPosts);
-    document.getElementById('fetchRates').addEventListener('click', fetchRates);
 });
